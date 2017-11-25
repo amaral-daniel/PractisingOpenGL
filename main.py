@@ -37,6 +37,12 @@ def setShaders():
     glLinkProgram(p)
     glUseProgram(p)
 
+    return p
+
+def setUniforms(p):
+    light_position = (0,1.0,0,1.0)
+    light_position_uniform = glGetUniformLocation(p,"light_source_position")
+    glUniform4fv(light_position_uniform,1,light_position)
 
 def Cube():
     glBegin(GL_TRIANGLES)
@@ -55,9 +61,11 @@ def main():
     glEnable(GL_DEPTH_TEST)
     gluPerspective(45, (display[0]/display[1]), 0.1, 50.0)
 
+
     glTranslatef(0.0,0.0,-10)
     print("antes de setar os shaders!!!!!!!!!!!!!!")
-    setShaders()
+    p = setShaders()
+    setUniforms(p)
     print("setou os shaders!!!!!!!!!!!!!!")
     while True:
         for event in pygame.event.get():

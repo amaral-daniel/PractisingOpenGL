@@ -2,6 +2,7 @@
 // attribute variables
 // www.lighthouse3d.com
 
+uniform vec4 light_source_position;
 varying vec4 out_Color;
 varying vec4 position;
 
@@ -13,7 +14,7 @@ void main()
 
   position = p;
 
-  out_Color = gl_Color;
+  out_Color = light_source_position;//gl_Color;
   gl_Position = gl_Vertex;
 	gl_ModelViewProjectionMatrix * p;
 }
